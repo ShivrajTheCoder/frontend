@@ -8,6 +8,8 @@ import Footer from './Components/Footer'
 import Signup from './Screens/Signup'
 import HomeScreen from './Screens/HomeScreen'
 import { UserContext } from './UserContext'
+import AddDetailsScreen from './Screens/AddDetailsScreen'
+import MyProfileScreen from './Screens/MyProfileScreen'
 
 function App() {
   const [user,setUser]=useState(null);
@@ -21,6 +23,8 @@ function App() {
             <Route path='/' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/home' element={<HomeScreen />} />
+            <Route path='/adddetails' element={<AddDetailsScreen />} />
+            <Route path='/myprofile' element={<MyProfileScreen />} />
           </Routes>
           <Footer />
         </div>
