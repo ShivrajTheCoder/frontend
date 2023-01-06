@@ -13,6 +13,7 @@ import MyProfileScreen from './Screens/MyProfileScreen'
 import CollegeDetailsScreen from './Screens/CollegeDetailsScreen'
 import AddProfessionScreen from './Screens/AdminScreens/AddProfessionScreen'
 import ProfessionScreen from './Screens/ProfessionScreen'
+import AddCollegeScreen from './Screens/AdminScreens/AddCollegeScreen'
 
 
 function App() {
@@ -30,8 +31,10 @@ function App() {
             <Route path='/adddetails' element={<AddDetailsScreen />} />
             <Route path='/myprofile' element={<MyProfileScreen />} />
             <Route path='/college/:id' element={<CollegeDetailsScreen />} />
-            <Route path='/addprofession' element={<AddProfessionScreen/>} />
             <Route path='/profession' element={<ProfessionScreen/>} />
+            <Route path='/admin/addprofession' element={<AddProfessionScreen/>} />
+            <Route path='/admin/addcollege' element={<AddCollegeScreen/>} />
+            <Route path='/admin/addcourses' element={<AddCollegeScreen/>} />
           </Routes>
           <Footer />
         </div>
