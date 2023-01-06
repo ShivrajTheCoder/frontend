@@ -2,16 +2,18 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import ReactSelect from 'react-select';
+import { BASE_URL } from '../../BASE_URL';
 
 export default function AddDetailsScreen() {
   const [schoolname, setSchoolName] = useState("");
   const [hightschoolper, setHigh] = useState();
   const [intermediateper, setInter] = useState();
   const [stream, setStream] = useState();
+
   const navigate=useNavigate();
   const handleSubmit = async () => {
     // console.log(phone, password);
-    axios.post("http://192.168.29.80:8000/user/63b055b194b6100f5ef1128f/updateprofile", {
+    axios.post(`${BASE_URL}/user/63b055b194b6100f5ef1128f/updateprofile`, {
       schoolname,
       hightschoolper,
       intermediateper,
@@ -22,6 +24,7 @@ export default function AddDetailsScreen() {
       navigate("/home");
     }).catch(err => {
       console.log(err);
+      alert("Try Again");
     })
   }
   return (

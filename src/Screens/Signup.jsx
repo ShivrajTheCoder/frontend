@@ -1,26 +1,34 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
+import { BASE_URL } from '../../BASE_URL';
 
 export default function Signup() {
   const [username, setUsername] = useState("");
   const [phone, setPhone] = useState();
   const [password, setPassword] = useState();
   const [confirm, setConfirmPassword] = useState();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const handleLogin = async () => {
     console.log(phone, password);
-    axios.post("http://192.168.29.80:8000/authentication/signup", {
-      username,
-      phonenumber: phone,
-      password
-    }).then(response => {
-      console.log(response);
-      alert("Successfully registed")
-      navigate("/");
-    }).catch(err => {
-      console.log(err);
-    })
+    if (password === confirm) {
+      axios.post(`${BASE_URL}/authentication/signup`, {
+        username,
+        phonenumber: phone,
+        password
+      }).then(response => {
+        console.log(response);
+        alert("Successfully registed")
+        navigate("/");
+      }).catch(err => {
+        console.log(err);
+        navigate("/signup");
+      })
+    }
+    else{
+      console.log("paswords do not match");
+      navigate("/signup");
+    }
   }
   return (
     <section className='flex flex-col mb-20 text-[#023047] justify-around items-center   rounded-md mx-72 bg-[#caf0f8] shadow-2xl shadow-grey-500 h-fit my-6'>

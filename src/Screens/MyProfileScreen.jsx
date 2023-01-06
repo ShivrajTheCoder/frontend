@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { BASE_URL } from '../../BASE_URL';
 
 export default function MyProfileScreen() {
     const [userData,setUserData]=useState({});
     const fetchProfileData=async()=>{
-        await axios.get("http://192.168.29.80:8000/user/63b055b194b6100f5ef1128f/getuserdetails")
+        await axios.get(`${BASE_URL}/user/63b055b194b6100f5ef1128f/getuserdetails`)
         .then(response=>{
             const newObj=response.data.result;
             setUserData(newObj);

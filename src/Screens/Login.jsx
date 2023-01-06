@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router';
+import { BASE_URL } from '../../BASE_URL';
 import { UserContext } from '../UserContext';
 export default function Login() {
   const [phone, setPhone] = useState();
@@ -13,7 +14,7 @@ export default function Login() {
 </button> */}
   const handleLogin = async () => {
     console.log(phone, password);
-    await axios.post("http://192.168.29.80:8000/authentication/login", {
+    await axios.post(`${BASE_URL}/authentication/login`, {
       phonenumber: phone,
       password
     })
@@ -24,6 +25,7 @@ export default function Login() {
         navigate("/home")
       }).catch(err => {
         console.log(err);
+        navigate("/")
       })
   }
   return (

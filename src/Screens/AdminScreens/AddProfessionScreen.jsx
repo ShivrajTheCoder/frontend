@@ -32,6 +32,9 @@ export default function AddProfessionScreen() {
                 if(response.status===201){
                     setSucess(true);
                 }
+                else{
+                    setFailure(true);
+                }
             })
             .catch(error=>{
                 console.log(error);
