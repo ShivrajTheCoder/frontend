@@ -3,7 +3,7 @@ import React from 'react'
 export default function ProfessionCard(props) {
     const { profession } = props;
     return (
-        <article className='flex p-2 border shadow-xl rounded-xl mx-4 my-10'>
+        <article className='flex p-2 border shadow-xl rounded-xl mx-4 my-10 bg-[#edf2f4]'>
             <img className='h-64 w-72 rounded-xl' src={profession.img_url} alt="" />
             <div className='flex flex-col m-2'>
                 <h1 className='text-[#023047] my-2 text-xl font-bold'>{profession.name}</h1>

@@ -1,5 +1,5 @@
 organge : #fb8500
 yellow  : #ffb703
-creme   : #f1faee
+creme   : #edf2f4
 font    : #023047
 blue sky: #cae9ff
