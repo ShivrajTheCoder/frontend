@@ -11,6 +11,9 @@ import { UserContext } from './UserContext'
 import AddDetailsScreen from './Screens/AddDetailsScreen'
 import MyProfileScreen from './Screens/MyProfileScreen'
 import CollegeDetailsScreen from './Screens/CollegeDetailsScreen'
+import AddProfessionScreen from './Screens/AdminScreens/AddProfessionScreen'
+import ProfessionScreen from './Screens/ProfessionScreen'
+
 
 function App() {
   const [user,setUser]=useState(null);
@@ -27,6 +30,8 @@ function App() {
             <Route path='/adddetails' element={<AddDetailsScreen />} />
             <Route path='/myprofile' element={<MyProfileScreen />} />
             <Route path='/college/:id' element={<CollegeDetailsScreen />} />
+            <Route path='/addprofession' element={<AddProfessionScreen/>} />
+            <Route path='/profession' element={<ProfessionScreen/>} />
           </Routes>
           <Footer />
         </div>

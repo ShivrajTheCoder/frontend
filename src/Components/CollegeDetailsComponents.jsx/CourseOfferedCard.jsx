@@ -22,12 +22,12 @@ export default function CourseOfferedCard(props) {
         fetchCourse();
     },[])
   return (
-    <div>
+    <div className='h-auto my-10'>
       {
         loading && <LoadingComponent/>
       }
       {
-        !loading && <main className='flex p-4 m-4 w-72 flex-col border shadow-xl rounded-xl items-center'>
+        !loading && <main className='flex p-4 m-4 h-full w-72 flex-col border shadow-xl rounded-xl items-center'>
         <h1 className='text-lg font-bold text-[#023047] mb-3 mr-auto'>{course.name}</h1>
         <p>{course.description.substring(0,200)}</p>
         <div className='mt-auto flex flex-col '>

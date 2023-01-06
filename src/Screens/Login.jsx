@@ -8,7 +8,9 @@ export default function Login() {
   const navigate = useNavigate();
 
   const { user, setUser } = useContext(UserContext);
-
+{/* <button type="button" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ...">
+  Hover me
+</button> */}
   const handleLogin = async () => {
     console.log(phone, password);
     await axios.post("http://192.168.29.80:8000/authentication/login", {

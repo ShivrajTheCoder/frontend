@@ -8,7 +8,6 @@ import LoadingComponent from '../Components/LoadingComponent';
 export default function CollegeDetailsScreen() {
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
-    // console.log(id);
     const [college, setCollege] = useState();
     const [courses, setCourses] = useState([]);
     const fetchCollege = async () => {
@@ -29,21 +28,24 @@ export default function CollegeDetailsScreen() {
         fetchCollege();
     }, [])
     return (
-        <div>
+        <div className='mx-32'>
             {!loading && <div>
-                <h1>{college.name}</h1>
-                <p>{college.description}</p>
-                <div>
+                <h1 className='text-3xl mb-4 font-bold text-[#023047]'>{college.name}</h1>
+                <p className='text-lg font-normal text-[#1d3557]'>{college.description}</p>
+                <button type="button" class="bg-gradient-to-r rounded-md px-3 py-2 from-green-400 to-blue-500 text-white mt-3 hover:from-pink-500 hover:to-yellow-500 ...">
+                    Official Website
+                </button>
+                <div className='flex flex-wrap'>
                     {
-                        courses.map(course=>{
+                        courses.map(course => {
                             return (
-                            <CourseOfferedCard cardId={course} key={course}>course</CourseOfferedCard>
+                                <CourseOfferedCard cardId={course} key={course}>course</CourseOfferedCard>
                             )
                         })
                     }
                 </div>
             </div>}
-            {loading && <LoadingComponent/>}
+            {loading && <LoadingComponent />}
         </div>
     )
 }
