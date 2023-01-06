@@ -56,7 +56,7 @@ export default function AddCollegeScreen() {
         <section className="flex flex-col justify-center items-center w-full">
           <div className='flex flex-col'>
             <label className='text-lg font-semibold text-[#023047]' htmlFor="name">Name</label>
-            <input onChange={e=>setName(e.target.value)} className='w-80 bg-[#edf2f4] border rounded-md shadow-sm ' type="text" name="name" id="name" />
+            <input onChange={e=>setName(e.target.value)} className='w-80 bg-[#edf2f4] border rounded-md shadow-sm px-2 py-1' type="text" name="name" id="name" />
           </div>
           <div className='flex mr-52 my-4 items-center'>
             <Switch onClick={toggler} className='' />
@@ -66,7 +66,7 @@ export default function AddCollegeScreen() {
           </div>
           <div className='flex flex-col'>
             <label className='text-lg font-semibold text-[#023047]' htmlFor="name">Description</label>
-            <input onChange={e=>setDescription(e.target.value)} className='w-80 h-80 bg-[#edf2f4] border rounded-md shadow-sm ' type="text" name="name" id="name" />
+            <textarea onChange={e=>setDescription(e.target.value)} className='w-80 h-80 bg-[#edf2f4] px-2 py-1 border rounded-md shadow-sm ' type="text" name="name" id="name"></textarea>
           </div>
           <div className='flex flex-col'>
             <label className='text-lg font-semibold text-[#023047]' htmlFor="name">Location</label>
