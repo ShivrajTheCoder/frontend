@@ -21,7 +21,7 @@ function App() {
   const [user,setUser]=useState(null);
 
   return (
-    <BrowserRouter>
+   <BrowserRouter>
       <UserContext.Provider value={{user,setUser}}>
         <div className='w-full App'>
           <Header />
