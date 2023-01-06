@@ -1,9 +1,10 @@
 import { Switch } from 'antd'
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ReactSelect from 'react-select';
 import { BASE_URL } from '../../../BASE_URL';
 import LoadingComponent from '../../Components/LoadingComponent';
+import { UserContext } from '../../UserContext';
 
 export default function AddCollegeScreen() {
   const [univ, setUni] = useState("Private");
@@ -11,9 +12,14 @@ export default function AddCollegeScreen() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
+  // const [courses, setCourses] = useState(["63b87b92ae8e2a18e4f5f998", "63b87b92ae8e2a18e4f5f99a", "63b87b92ae8e2a18e4f5f99b"])
   const [courses, setCourses] = useState(["63b87b92ae8e2a18e4f5f998", "63b87b92ae8e2a18e4f5f99a", "63b87b92ae8e2a18e4f5f99b"])
   const [sucess, setSucess] = useState(false);
   const [failure, setFailure] = useState(false);
+
+
+  const {user}=useContext(UserContext);
+
   const handleAddCollege = () => {
 
     setFailure(false);
@@ -22,7 +28,10 @@ export default function AddCollegeScreen() {
       name, description, type: univ, location, coursesOffered: courses
     }
     console.log(data);
-    axios.post(`${BASE_URL}/admin/addcollege`, data)
+    const config = {
+      headers: { Authorization: `Bearer ${user.token}` }
+  };
+    axios.post(`${BASE_URL}/admin/addcollege`, data,config)
       .then(response => {
         console.log(response);
         if (response.status === 201) {

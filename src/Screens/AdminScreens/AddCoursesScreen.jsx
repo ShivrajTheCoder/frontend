@@ -1,9 +1,10 @@
 import { Switch } from 'antd'
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ReactSelect from 'react-select';
 import { BASE_URL } from '../../../BASE_URL';
 import LoadingComponent from '../../Components/LoadingComponent';
+import { UserContext } from '../../UserContext';
 
 export default function AddCoursesScreen() {
   const [stream, setStream] = useState();
@@ -14,6 +15,7 @@ export default function AddCoursesScreen() {
   const [sucess, setSucess] = useState(false);
   const [failure, setFailure] = useState(false);
 
+  const {user}=useContext(UserContext);
   const handleAddCourse = () => {
     setFailure(false);
     setSucess(false);
@@ -21,7 +23,10 @@ export default function AddCoursesScreen() {
       name, description, stream, duration
     }
     console.log(data);
-    axios.post(`${BASE_URL}/admin/addcourse`, data)
+    const config = {
+      headers: { Authorization: `Bearer ${user.token}` }
+  };
+    axios.post(`${BASE_URL}/admin/addcourse`, data,config)
       .then(response => {
         console.log(response);
         if (response.status === 201) {
