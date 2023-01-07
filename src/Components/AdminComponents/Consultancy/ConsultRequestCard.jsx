@@ -69,9 +69,9 @@ export default function ConsultRequestCard(props) {
                         props.request.callLink &&
                         <div>
                             <label htmlFor="" className='text-md font-semibold' >Meet Link</label>
-                            <div className='bg-[#cae9ff] h-fit flex flex-wrap p-2 rounded-sm w-full my-2 text-[#023047] text-lg font-semibold' type="text" >
+                            <a href={props.request.callLink} target="_blank" className='bg-[#cae9ff] h-fit flex flex-wrap p-2 rounded-sm w-full my-2 text-[#023047] text-lg font-semibold' type="text" >
                                 {props.request.callLink}
-                            </div>
+                            </a>
                             <button className='bg-[#023047] text-white py-1 rounded-md w-full'>Link Sent</button>
                         </div>
                     }
