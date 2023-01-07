@@ -2,33 +2,47 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import { BASE_URL } from '../../BASE_URL';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Signup() {
-  const [username, setUsername] = useState("");
+
+  const notify = (message) => toast(message);
+
+  const [username, setUsername] = useState();
   const [phone, setPhone] = useState();
   const [password, setPassword] = useState();
   const [confirm, setConfirmPassword] = useState();
   const navigate = useNavigate();
   const handleLogin = async () => {
-    console.log(phone, password);
-    if (password === confirm) {
+    // console.log(phone, password);
+    const phoneReg = /^\d{10}$/;
+    if (password === confirm && phoneReg.test(phone) && password.length >= 5 && username.length >= 5) {
       axios.post(`${BASE_URL}/authentication/signup`, {
         username,
         phonenumber: phone,
         password
       }).then(response => {
         console.log(response);
-        alert("Successfully registed")
-        navigate("/");
+        if (response.status === 200) {
+          notify("Sucessfully Registered");
+          navigate("/");
+        }
+        else {
+          notify(response.data.message);
+        }
       }).catch(err => {
-        console.log(err);
-        navigate("/signup");
+        notify(err.message);
       })
     }
-    else{
-      console.log("paswords do not match");
+    else {
+      notify("Enter correct data");
       navigate("/signup");
     }
+    setUsername("");
+    setPassword("");
+    setConfirmPassword("");
+    setPhone("");
   }
   return (
     <section className='flex flex-col mb-20 text-[#023047] justify-around items-center   rounded-md mx-72 bg-[#caf0f8] shadow-2xl shadow-grey-500 h-fit my-6'>
@@ -54,6 +68,7 @@ export default function Signup() {
           Already a user ?<a className='underline mx-2' href="/">Login</a>
         </p>
       </div>
+      <ToastContainer />
     </section>
   )
 }

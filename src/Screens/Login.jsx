@@ -20,7 +20,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     // console.log(phone, password);
-    const phoneReg = /^\d{10}$/
+    const phoneReg = /^\d{10}$/;
     if (phoneReg.test(phone) && password.length >= 5) {
       await axios.post(`${BASE_URL}/authentication/login`, {
         phonenumber: phone,
