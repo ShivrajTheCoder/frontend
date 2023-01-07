@@ -12,28 +12,39 @@ export default function MyProfileScreen() {
     const [userData, setUserData] = useState({});
     const [loading, setLoading] = useState(true);
     const { user } = useContext(UserContext);
-
-
+    const [requestLoading, setRequestLoading] = useState();
+    const [call, setCall] = useState();
     const notify = (message) => toast(message);
 
-    const bookSession=async()=>{
+    const bookSession = async () => {
         await axios.post(`${BASE_URL}/user/counsellingrequest/${user.userId}`)
-            .then(response=>{
-                if(response.status===201){
+            .then(response => {
+                if (response.status === 201) {
                     notify("Session Booked")
                 }
-                else if(response.status===409){
+                else if (response.status === 409) {
                     notify("Already Booked");
                 }
-                else{
+                else {
                     notify("Error occured")
                 }
             })
-            .catch(err=>{
+            .catch(err => {
                 notify("Already Booked");
             })
     }
+    const fetchBookingStatus = async () => {
+        await axios.get(`${BASE_URL}/user/counsellingrequest/${user.userId}`)
+            .then(response => {
+                console.log(response.data.response);
+                setCall(response.data.response);
 
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        setRequestLoading(false);
+    }
     const fetchProfileData = async () => {
         await axios.get(`${BASE_URL}/user/${user.userId}/getuserdetails`)
             .then(response => {
@@ -49,6 +60,7 @@ export default function MyProfileScreen() {
     }
     useEffect(() => {
         fetchProfileData();
+        fetchBookingStatus();
     }, [])
     return (
         <>
@@ -81,17 +93,24 @@ export default function MyProfileScreen() {
                     </div>
                     {
                         !userData.schoolname &&
-                        <Link to='/adddetails' className='bg-[#fb8500] border  my-4 py-2  px-4 text-white mx-2 rounded-md'>Add Details</Link>
+                        <Link to='/adddetails' className='bg-[#03045e] border  my-4 py-2  px-4 text-white mx-2 rounded-md'>Add Details</Link>
                     }
                     {
-                        userData.schoolname && 
-                        <button onClick={bookSession} to='/adddetails' className='bg-[#fb8500] border  my-4 py-2  px-4 text-white mx-2 rounded-md'>Book Session just ₹ 99</button>
+                        userData.schoolname && !call &&
+                        <button onClick={bookSession} to='/adddetails' className='bg-[#03045e] border  my-4 py-2  px-4 text-white mx-2 rounded-md'>Book Session just ₹ 99</button>
+                    }
+                    {
+                        userData.schoolname && call &&
+                        <a href={call.callLink} target="_blank" className='flex m-2 p-2 w-64 justify-evenly'>
+                            <h3 className='text-lg-[#023047] font-bold'>Call Link</h3>
+                            <p className='text-md text-orange-800 font-semibold'>{call.callLink}</p>
+                        </a>
                     }
                     <ToastContainer />
                 </section>
             }
             {
-                loading && <LoadingComponent/>
+                loading && <LoadingComponent />
             }
         </>
     )

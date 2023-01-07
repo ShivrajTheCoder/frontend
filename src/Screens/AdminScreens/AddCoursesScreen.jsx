@@ -63,7 +63,7 @@ export default function AddCoursesScreen() {
             { value: 'commerce', label: 'Commerce' },
             { value: 'arts', label: 'Arts' }
           ]} placeholder={"Choose Stream"} />
-          <button onClick={handleAddCourse} className='bg-[#fb8500] border  my-4 py-2  px-4 text-white mx-2 rounded-md'>Add College</button>
+          <button onClick={handleAddCourse} className='bg-[#03045e] border  my-4 py-2  px-4 text-white mx-2 rounded-md'>Add Course</button>
         </section>
       }
       {

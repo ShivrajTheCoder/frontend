@@ -8,7 +8,7 @@ export default function ProfessionCard(props) {
             <div className='flex flex-col m-2'>
                 <h1 className='text-[#023047] my-2 text-xl font-bold'>{profession.name}</h1>
                 <p className='text-lg my-2'>{profession.description}</p>
-                <button  className='bg-[#fb8500] border w-fit  my-2 py-2  px-4 text-white mx-2 rounded-md'>{profession.stream}</button>
+                <button  className='bg-[#03045e] border w-fit  my-2 py-2  px-4 text-white mx-2 rounded-md'>{profession.stream}</button>
             </div>
         </article>
     )

@@ -65,7 +65,7 @@ export default function Login() {
           <label htmlFor="password">Password</label>
           <input onChange={e => setPassword(e.target.value)} className='h-8 px-2 border rounded-md' type="password" name="password" id="password" />
         </div>
-        <button onClick={handleLogin} className='h-10 w-20 m-5 rounded-md text-white bg-[#ffb703]'>Login</button>
+        <button onClick={handleLogin} className='h-10 w-20 m-5 rounded-md text-white bg-[#03045e]'>Login</button>
         <p className='mx-5 text-[#023047] text-sm'>
           Not a user ?<a className='underline mx-2' href="/signup">become one</a>
         </p>

@@ -119,7 +119,7 @@ export default function AddCollegeScreen() {
             { value: 'commerce', label: 'Commerce' },
             { value: 'arts', label: 'Arts' }
           ]} placeholder={"Choose Stream"} /> */}
-          <button onClick={handleAddCollege} className='bg-[#fb8500] border  my-4 py-2  px-4 text-white mx-2 rounded-md'>Add College</button>
+          <button onClick={handleAddCollege} className='bg-[#03045e] border  my-4 py-2  px-4 text-white mx-2 rounded-md'>Add College</button>
 
         </section>
       }
