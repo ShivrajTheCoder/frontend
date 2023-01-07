@@ -20,23 +20,31 @@ export default function Login() {
 
   const handleLogin = async () => {
     // console.log(phone, password);
-    await axios.post(`${BASE_URL}/authenticatio/login`, {
-      phonenumber: phone,
-      password
-    })
-      .then(async response => {
-        console.log(response.data);
-        if(response.status===200){
-        await setUser(response.data);
-        // console.log(user);
-        navigate("/home")
-        notify();
-        }
-      }).catch(err => {
-        console.log(err);
-        navigate("/");
-        notify(err.message);
+    const phoneReg = /^\d{10}$/
+    if (phoneReg.test(phone) && password.length >= 5) {
+      await axios.post(`${BASE_URL}/authentication/login`, {
+        phonenumber: phone,
+        password
       })
+        .then(async response => {
+          console.log(response.data);
+          if (response.status === 200) {
+            await setUser(response.data);
+            // console.log(user);
+            navigate("/home")
+            notify();
+          }
+        }).catch(err => {
+          console.log(err);
+          navigate("/");
+          notify(err.message);
+        })
+    }
+    else {
+      notify("Incorrect Details");
+      navigate("/")
+    }
+
   }
   return (
     <section className='flex flex-col mb-20 text-[#023047] justify-around items-center   rounded-md mx-72 bg-[#caf0f8] shadow-2xl shadow-grey-500 h-80 my-6'>
