@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <footer className='h-full pb-10 w-full bg-[#ffb703] flex flex-col sm:flex-row sm:items-center sm:p-10'>
+    <footer className='h-full pb-10 w-full bg-[#03045e] flex flex-col sm:flex-row sm:items-center sm:p-10'>
     <div>
         {/* <img src={require("../assets/Logo.png")} alt="" /> */}
     </div>

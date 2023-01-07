@@ -5,8 +5,12 @@ import { UserContext } from '../UserContext';
 
 export default function Header() {
   const navigate = useNavigate();
-  const { user } = useContext(UserContext);
-  console.log(user);
+  const { user,setUser } = useContext(UserContext);
+  // console.log(user);
+  const handleLogout=()=>{
+    setUser(null);
+    navigate("/")
+  }
   return (
     <nav className='h-10 p-2 mb-10 flex items-center flex-wrap'>
       {/* <img className='h-8 w-auto mr-96' src={require("../assets/logo1.png")} alt="" /> */}
@@ -18,6 +22,9 @@ export default function Header() {
             <Link to="/adddetails" className='mx-2'>Update Details</Link>
           }
           <Link to="/professions" className='mx-2'>Professions</Link>
+          {
+            user && <button onClick={handleLogout} className='mx-2 py-2 px-3 text-white rounded-md bg-[#03045e]'>Logout</button>
+          }
           {
             user && user.isAdmin && 
             <Link to="/admin/addcourses" className='mx-2'>Add Courses</Link>
