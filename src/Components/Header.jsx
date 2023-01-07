@@ -15,7 +15,7 @@ export default function Header() {
           <Link to="/home" className='mx-2'>Home</Link>
           {
             user && !user.isAdmin &&
-            <Link to="/home" className='mx-2'>Update Details</Link>
+            <Link to="/adddetails" className='mx-2'>Update Details</Link>
           }
           <Link to="/professions" className='mx-2'>Professions</Link>
           {
@@ -36,10 +36,10 @@ export default function Header() {
           </div>}
           {
             user && !user.isAdmin &&
-            <button onClick={() => navigate("/")} className='bg-[#E3DCF7] border  my-2 py-2  px-4 text-[#023047] mx-2 rounded-md'>{user.username}</button>
+            <Link to="/myprofile" className='bg-[#E3DCF7] border  my-2 py-2  px-4 text-[#023047] mx-2 rounded-md'>{user.username}</Link>
           }
           {
-            user && user.isAdmin && <button onClick={() => navigate("/")} className='bg-[#E3DCF7] border  my-2 py-2  px-4 text-[#023047] mx-2 rounded-md'>{user.username}</button>
+            user && user.isAdmin && <Link to="/admin/adminpanel" className='bg-[#E3DCF7] border  my-2 py-2  px-4 text-[#023047] mx-2 rounded-md'>{user.username}</Link>
           }
         </div>
       </div>

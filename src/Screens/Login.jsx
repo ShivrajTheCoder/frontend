@@ -31,8 +31,16 @@ export default function Login() {
           if (response.status === 200) {
             await setUser(response.data);
             // console.log(user);
-            navigate("/home")
-            notify();
+            if(response.data.isAdmin){
+              navigate("/admin/adminpanel")
+            }
+            else{
+              navigate("/home")
+            }
+            notify("Logged in");
+          }
+          else{
+            notify("Can't login")
           }
         }).catch(err => {
           console.log(err);

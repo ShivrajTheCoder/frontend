@@ -1,19 +1,20 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router';
 import ReactSelect from 'react-select';
 import { BASE_URL } from '../../BASE_URL';
+import { UserContext } from '../UserContext';
 
 export default function AddDetailsScreen() {
   const [schoolname, setSchoolName] = useState("");
   const [hightschoolper, setHigh] = useState();
   const [intermediateper, setInter] = useState();
   const [stream, setStream] = useState();
-
+  const {user}=useContext(UserContext);
   const navigate=useNavigate();
   const handleSubmit = async () => {
     // console.log(phone, password);
-    axios.post(`${BASE_URL}/user/63b055b194b6100f5ef1128f/updateprofile`, {
+    axios.post(`${BASE_URL}/user/${user.userId}/updateprofile`, {
       schoolname,
       hightschoolper,
       intermediateper,
@@ -44,11 +45,13 @@ export default function AddDetailsScreen() {
         </div>
         <div className='flex flex-col m-3'>
           <label htmlFor="stream">Stream</label>
-          <ReactSelect id='tenure' className='' options={[
-                    { value: 'science', label: 'Science' },
-                    { value: 'commerce', label: 'Commerce' },
-                    { value: 'arts', label: 'Arts' }
-                ]} placeholder={"Choose Stream"} />
+          <select onChange={e=>{
+            setStream(e.target.value)
+          }}>
+            <option value="science">Science</option>
+            <option value="commerce">Commerce</option>
+            <option value="arts">Arts</option>
+          </select>
         </div>
         <button onClick={handleSubmit} className='h-10 w-fit px-5 m-5 rounded-md text-white bg-[#ffb703]'>Update Details</button>
         
