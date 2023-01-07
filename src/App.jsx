@@ -15,6 +15,7 @@ import AddProfessionScreen from './Screens/AdminScreens/AddProfessionScreen'
 import ProfessionScreen from './Screens/ProfessionScreen'
 import AddCollegeScreen from './Screens/AdminScreens/AddCollegeScreen'
 import AddCoursesScreen from './Screens/AdminScreens/AddCoursesScreen'
+import AdminPanel from './Screens/AdminScreens/AdminPanel'
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
             <Route path='/admin/addprofession' element={<AddProfessionScreen/>} />
             <Route path='/admin/addcollege' element={<AddCollegeScreen/>} />
             <Route path='/admin/addcourses' element={<AddCoursesScreen/>} />
+            <Route path='/admin/adminpanel' element={<AdminPanel/>} />
           </Routes>
           <Footer />
         </div>

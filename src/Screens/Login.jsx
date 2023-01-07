@@ -13,7 +13,7 @@ export default function Login() {
   Hover me
 </button> */}
   const handleLogin = async () => {
-    console.log(phone, password);
+    // console.log(phone, password);
     await axios.post(`${BASE_URL}/authentication/login`, {
       phonenumber: phone,
       password
