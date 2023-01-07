@@ -3,29 +3,39 @@ import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router';
 import { BASE_URL } from '../../BASE_URL';
 import { UserContext } from '../UserContext';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Login() {
   const [phone, setPhone] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
-
   const { user, setUser } = useContext(UserContext);
-{/* <button type="button" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ...">
+  {/* <button type="button" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ...">
   Hover me
 </button> */}
+
+  const notify = (message) => toast(message);
+
   const handleLogin = async () => {
     // console.log(phone, password);
-    await axios.post(`${BASE_URL}/authentication/login`, {
+    await axios.post(`${BASE_URL}/authenticatio/login`, {
       phonenumber: phone,
       password
     })
       .then(async response => {
         console.log(response.data);
+        if(response.status===200){
         await setUser(response.data);
         // console.log(user);
         navigate("/home")
+        notify();
+        }
       }).catch(err => {
         console.log(err);
-        navigate("/")
+        navigate("/");
+        notify(err.message);
       })
   }
   return (
@@ -44,6 +54,7 @@ export default function Login() {
           Not a user ?<a className='underline mx-2' href="/signup">become one</a>
         </p>
       </div>
+      <ToastContainer />
     </section>
   )
 }
