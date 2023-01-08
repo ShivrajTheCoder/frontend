@@ -24,7 +24,8 @@ export default function ConsultRequestCard(props) {
                 .then(response=>{
                     console.log(response);
                     setMeetLink("");
-                    navigate("/")
+                    // window.location.reload();
+                    navigate("/home")
                 })
                 .catch(err=>{
                     console.log(err);
