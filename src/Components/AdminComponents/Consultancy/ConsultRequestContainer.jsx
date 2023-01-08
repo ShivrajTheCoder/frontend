@@ -1,14 +1,19 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { BASE_URL } from '../../../../BASE_URL'
+import { UserContext } from '../../../UserContext';
 import LoadingComponent from '../../LoadingComponent';
 import ConsultRequestCard from './ConsultRequestCard'
 
 export default function ConsultRequestContainer() {
   const [isLoading, setIsLoading] = useState(true);
   const [requests, setRequests] = useState();
+  const {user}=useContext(UserContext);
   const fetchAllRequests = async () => {
-    await axios.get(`${BASE_URL}/admin/getallrequests`)
+    const config = {
+      headers: { Authorization: `Bearer ${user.token}` }
+  };
+    await axios.get(`${BASE_URL}/admin/getallrequests`,config)
       .then(result => {
         // console.log(result.data);
         if (result.status == 200) {

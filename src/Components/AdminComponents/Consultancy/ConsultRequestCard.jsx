@@ -1,21 +1,26 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router';
 import { BASE_URL } from '../../../../BASE_URL';
+import { UserContext } from '../../../UserContext';
 import LoadingComponent from '../../LoadingComponent';
 
 export default function ConsultRequestCard(props) {
     const [isLoading, setIsLoading] = useState(true);
     const [meetLink, setMeetLink] = useState();
-    const [user, setUser] = useState()
+    const [useR, setUseR] = useState()
     const { requestee } = props.request;
-
     const navigate=useNavigate();
+    const {user}=useContext(UserContext);
     const handleSendLink=async()=>{
         if(meetLink){
+            const config = {
+                headers: { Authorization: `Bearer ${user.token}` }
+            };
+            console.log(config)
             axios.post(`${BASE_URL}/admin/acceptrequest/${props.request._id}`,{
                 callLink:meetLink
-            })
+            },config)
                 .then(response=>{
                     console.log(response);
                     setMeetLink("");
@@ -29,11 +34,14 @@ export default function ConsultRequestCard(props) {
     // console.log(props.request)
     const fetchUser = async () => {
         // console.log(requestee)
-        await axios.get(`${BASE_URL}/admin/getuserdetails/${requestee}`)
+        const config = {
+            headers: { Authorization: `Bearer ${user.token}` }
+        };
+        await axios.get(`${BASE_URL}/admin/getuserdetails/${requestee}`,config)
             .then(res => {
                 // console.log(res.data.result);
                 if (res.status === 200) {
-                    setUser(res.data.result);
+                    setUseR(res.data.result);
                     setIsLoading(false);
                 }
             })
@@ -53,8 +61,8 @@ export default function ConsultRequestCard(props) {
             {
                 !isLoading &&
                 <div className='flex flex-col w-64 shadow-2xl m-3 p-3 rounded-md text-[#023047]'>
-                    <h1 className='font-semibold text-lg '>{user.username}</h1>
-                    <p>{user.phonenumber}</p>
+                    <h1 className='font-semibold text-lg '>{useR.username}</h1>
+                    <p>{useR.phonenumber}</p>
 
                     {
                         !props.request.callLink &&

@@ -13,7 +13,7 @@ export default function AddDetailsScreen() {
   const {user}=useContext(UserContext);
   const navigate=useNavigate();
   const handleSubmit = async () => {
-    // console.log(phone, password);
+    console.log(stream);
     axios.post(`${BASE_URL}/user/${user.userId}/updateprofile`, {
       schoolname,
       hightschoolper,
@@ -53,7 +53,7 @@ export default function AddDetailsScreen() {
             <option value="arts">Arts</option>
           </select>
         </div>
-        <button onClick={handleSubmit} className='h-10 w-fit px-5 m-5 rounded-md text-white bg-[#ffb703]'>Update Details</button>
+        <button onClick={handleSubmit} className='h-10 w-fit px-5 m-5 rounded-md text-white bg-[#03045e]'>Update Details</button>
         
       </div>
     </section>

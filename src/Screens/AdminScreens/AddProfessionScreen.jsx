@@ -44,6 +44,7 @@ export default function AddProfessionScreen() {
 
   return (
     <main className='mx-32 my-10 flex flex-col justify-center items-center '>
+      <h1 className='text-2xl my-3 font-bold text-[#03045e]'>Enter Profession Details</h1>
       {!isLoading &&
         <section className="flex flex-col justify-center items-center w-full">
           <div className='flex flex-col'>

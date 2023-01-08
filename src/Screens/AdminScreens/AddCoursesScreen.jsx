@@ -1,6 +1,7 @@
 import { Switch } from 'antd'
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router';
 import ReactSelect from 'react-select';
 import { BASE_URL } from '../../../BASE_URL';
 import LoadingComponent from '../../Components/LoadingComponent';
@@ -14,7 +15,7 @@ export default function AddCoursesScreen() {
   const [duration, setDuration] = useState("");
   const [sucess, setSucess] = useState(false);
   const [failure, setFailure] = useState(false);
-
+  const navigate=useNavigate();
   const {user}=useContext(UserContext);
   const handleAddCourse = () => {
     setFailure(false);
@@ -31,6 +32,7 @@ export default function AddCoursesScreen() {
         console.log(response);
         if (response.status === 201) {
           setSucess(true);
+          navigate("/admin/adminpanel")
         }
         else{
           setFailure(true);
@@ -44,6 +46,7 @@ export default function AddCoursesScreen() {
 
   return (
     <main className='mx-32 my-10 flex flex-col justify-center items-center '>
+      <h1 className='text-2xl my-3 font-bold text-[#03045e]'>Enter Course Details</h1>
       {!isLoading &&
         <section className="flex flex-col justify-center items-center w-full">
           <div className='flex flex-col'>

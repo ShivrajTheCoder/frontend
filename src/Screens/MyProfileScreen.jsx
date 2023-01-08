@@ -15,15 +15,16 @@ export default function MyProfileScreen() {
     const [requestLoading, setRequestLoading] = useState();
     const [call, setCall] = useState();
     const notify = (message) => toast(message);
-
     const bookSession = async () => {
         await axios.post(`${BASE_URL}/user/counsellingrequest/${user.userId}`)
             .then(response => {
                 if (response.status === 201) {
                     notify("Session Booked")
+                    window.location.reload()
                 }
                 else if (response.status === 409) {
                     notify("Already Booked");
+                    window.location.reload()
                 }
                 else {
                     notify("Error occured")
@@ -103,7 +104,15 @@ export default function MyProfileScreen() {
                         userData.schoolname && call &&
                         <a href={call.callLink} target="_blank" className='flex m-2 p-2 w-64 justify-evenly'>
                             <h3 className='text-lg-[#023047] font-bold'>Call Link</h3>
-                            <p className='text-md text-orange-800 font-semibold'>{call.callLink}</p>
+                            {
+                                call.callLink &&
+                                <p className='text-md text-orange-800 font-semibold'>{call.callLink
+                                }</p>
+                            }
+                            {
+                                !call.callLink &&
+                                <p className='text-md text-orange-800 font-semibold'>Pending</p>
+                            }
                         </a>
                     }
                     <ToastContainer />

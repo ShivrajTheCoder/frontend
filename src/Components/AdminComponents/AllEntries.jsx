@@ -1,17 +1,22 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { BASE_URL } from '../../../BASE_URL';
+import { UserContext } from '../../UserContext';
 import LoadingComponent from '../LoadingComponent';
 import SingleEntry from './SingleEntry'
 
 export default function AllEntries() {
   const [entities, setEntities] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const fetchWebDetails = async() => {
-   await axios.get(`${BASE_URL}/admin/getwebsitedetails`)
+  const { user } = useContext(UserContext);
+  const config = {
+    headers: { Authorization: `Bearer ${user.token}` }
+  };
+  const fetchWebDetails = async () => {
+    await axios.get(`${BASE_URL}/admin/getwebsitedetails`, config)
       .then(response => {
         console.log(response.data.data);
-        if(response.status===200){
+        if (response.status === 200) {
           setEntities(response.data.data);
           setIsLoading(false);
         }
