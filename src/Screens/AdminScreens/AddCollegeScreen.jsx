@@ -21,8 +21,8 @@ export default function AddCollegeScreen() {
   const [official_site,setOfficialSite]=useState();
   const { user } = useContext(UserContext);
 
+  const navigate=useNavigate();
   const handleAddCollege = () => {
-    const navigate=useNavigate();
     setFailure(false);
     setSucess(false);
     const data = {
