@@ -10,9 +10,9 @@ import { UserContext } from '../../UserContext';
 export default function AddCoursesScreen() {
   const [stream, setStream] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [duration, setDuration] = useState("");
+  const [name, setName] = useState();
+  const [description, setDescription] = useState();
+  const [duration, setDuration] = useState();
   const [sucess, setSucess] = useState(false);
   const [failure, setFailure] = useState(false);
   const navigate=useNavigate();

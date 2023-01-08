@@ -18,7 +18,7 @@ export default function AddCollegeScreen() {
   const [sucess, setSucess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [coursesOff, setCousrsesOff] = useState([]);
-
+  const [official_site,setOfficialSite]=useState();
   const { user } = useContext(UserContext);
 
   const handleAddCollege = () => {
@@ -26,7 +26,7 @@ export default function AddCollegeScreen() {
     setFailure(false);
     setSucess(false);
     const data = {
-      name, description, type: univ, location, coursesOffered: coursesOff
+      name, description, type: univ, location, coursesOffered: coursesOff,official_site
     }
     console.log(data);
     const config = {
@@ -94,6 +94,10 @@ export default function AddCollegeScreen() {
           <div className='flex flex-col'>
             <label className='text-lg font-semibold text-[#023047]' htmlFor="name">Location</label>
             <input onChange={e => setLocation(e.target.value)} className='w-80 bg-[#edf2f4] border rounded-md shadow-sm ' type="text" name="name" id="name" />
+          </div>
+          <div className='flex flex-col'>
+            <label className='text-lg font-semibold text-[#023047]' htmlFor="name">College Site</label>
+            <input onChange={e => setOfficialSite(e.target.value)} className='w-80 bg-[#edf2f4] border rounded-md shadow-sm ' type="text" name="name" id="name" />
           </div>
           <div className='flex flex-col'>
             <label className='text-lg font-semibold text-[#023047]' htmlFor="name">Select Courses</label>
